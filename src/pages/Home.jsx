@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Tab from '../components/Tab'
 import Task from '../components/Task'
+import { FiTrash } from 'react-icons/fi'
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState('all')
@@ -66,11 +67,15 @@ const Home = () => {
         {filteredTasks.map((task) => (
           <Task key={task.id} task={task} setTasks={setTasks} />
         ))}
-      </div>
-      <div className="flex justify-end py-4">
-        <button className="bg-red-500 text-white px-4 py-1 rounded-sm">
-          Delete All
-        </button>
+        <div className="flex justify-end py-4 sticky bottom-0 bg-white">
+          <button
+            className="bg-red-500 text-white px-4 py-1 rounded-sm flex items-center space-x-2"
+            onClick={() => setTasks([])}
+          >
+            <FiTrash />
+            <span>Delete All</span>
+          </button>
+        </div>
       </div>
     </div>
   )
